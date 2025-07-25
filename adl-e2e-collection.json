@@ -182,7 +182,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"// Validar status 201 (creado)\r",
+							"// Validar status 200 (creado)\r",
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});"
@@ -193,6 +193,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [
 					{

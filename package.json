@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "newman": "^6.2.1"
+    "newman": "^6.2.1",
+    "newman-reporter-htmlextra": "^1.23.1"
   },
   "dependencies": {
     "ajv": "^6.12.6",
