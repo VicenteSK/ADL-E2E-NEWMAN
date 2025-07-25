@@ -1,0 +1,326 @@
+{
+	"info": {
+		"_postman_id": "4f02a20e-0bf2-4a5f-9832-ce29681ec2a3",
+		"name": "ADL E2E backend test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15553649",
+		"_collection_link": "https://blue-sunset-302586.postman.co/workspace/Personal-Workspace~bfc1895b-45c6-44d4-afe4-e8ef665ff1a3/collection/15553649-4f02a20e-0bf2-4a5f-9832-ce29681ec2a3?action=share&source=collection_link&creator=15553649"
+	},
+	"item": [
+		{
+			"name": "Login Valido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//const token = pm.response.json().accessToken;\r",
+							"//pm.environment.set(\"accessToken\", token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n \r\n    \"email\":\"testeradl@test.com\",\r\n    \"password\":\"Tester@2025\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlBackendTest}}/api/login",
+					"host": [
+						"{{urlBackendTest}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consulta clientes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('El codigo de estado de la respuesta es 200', () =>{\r",
+							"\r",
+							"    pm.response.to.have.status(200); \r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlBackendTest}}/api/clients",
+					"host": [
+						"{{urlBackendTest}}"
+					],
+					"path": [
+						"api",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InsertarCliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validar status 201 (creado)\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// Capturar el ID del nuevo cliente\r",
+							"let jsonData = pm.response.json();\r",
+							"pm.environment.set(\"clienteId\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n       \r\n        \"name\": \"Don Ramon\",\r\n        \"cuit\": \"30-22345678-1\",\r\n        \"email\": \"Ramon.Valdes@example.com\",\r\n        \"phone\": \"+54 9 11 1234-5678\",\r\n        \"address\": \"Av. Corrientes 1234, Necaxa, Mexico\",\r\n        \"balance\": \"15230.75\",\r\n        \"is_active\": true,\r\n        \"created_at\": \"2025-06-05T14:52:59.000000Z\",\r\n        \"updated_at\": \"2025-06-24T12:46:18.000000Z\",\r\n        \"deleted_at\": null\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlBackendTest}}/api/clients",
+					"host": [
+						"{{urlBackendTest}}"
+					],
+					"path": [
+						"api",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validar status 201 (creado)\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "id",
+						"value": "{{clienteId}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n       \r\n        \"name\": \"Profesor Jirafales\",\r\n        \"cuit\": \"40-22345678-1\",\r\n        \"email\": \"Profe.Jirafales@example.com\",\r\n        \"phone\": \"+54 9 11 1234-5678\",\r\n        \"address\": \"Av. Corrientes 1234, Guanajuato, Mexico\",\r\n        \"balance\": \"15230.75\",\r\n        \"is_active\": true,\r\n        \"created_at\": \"2025-06-05T14:52:59.000000Z\",\r\n        \"updated_at\": \"2025-06-24T12:46:18.000000Z\",\r\n        \"deleted_at\": null\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlBackendTest}}/api/clients/{{clienteId}}",
+					"host": [
+						"{{urlBackendTest}}"
+					],
+					"path": [
+						"api",
+						"clients",
+						"{{clienteId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminarRegistro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El codigo de estad es 204\", function(){\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "id",
+						"value": "{{clienteId}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{urlBackendTest}}/api/clients/{{clienteId}}",
+					"host": [
+						"{{urlBackendTest}}"
+					],
+					"path": [
+						"api",
+						"clients",
+						"{{clienteId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "urlBackendTest",
+			"value": "https://api-tester-adl.leonardojose.dev",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "2032|pVYTQjRCEDUU6zmEKlTR1GiSglU6BaNoWSsUCnXp8226be2c",
+			"type": "string"
+		},
+		{
+			"key": "id",
+			"value": "\"clienteId\"",
+			"type": "string"
+		}
+	]
+}

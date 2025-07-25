@@ -1,0 +1,21 @@
+{
+	"id": "0d52a36b-f05f-41e2-a76a-0e86137e28e9",
+	"name": "ADL TEST",
+	"values": [
+		{
+			"key": "Id",
+			"value": "{{clienteId}}",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "clienteId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2025-07-24T22:50:03.266Z",
+	"_postman_exported_using": "Postman/11.55.4"
+}
