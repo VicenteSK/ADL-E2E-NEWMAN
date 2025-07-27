@@ -8,6 +8,28 @@
 	},
 	"item": [
 		{
+			"name": "Login Invalido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// se entrega password incorrecto\r\n{\r\n\r\n \r\n    \"email\":\"testeradl@test.com\",\r\n    \"password\":\"Tester@2222\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{urlBackendTest}}/api/login",
+					"host": [
+						"{{urlBackendTest}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Login Valido",
 			"event": [
 				{
@@ -58,6 +80,63 @@
 			"response": []
 		},
 		{
+			"name": "Consulta Cliente URL incorrecta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('El codigo de estado de la respuesta es 200', () =>{\r",
+							"\r",
+							"    pm.response.to.have.status(200); \r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "//se escribe Url incorrecta"
+				},
+				"url": {
+					"raw": "{{urlBackendTest}}/api/clientsAplication",
+					"host": [
+						"{{urlBackendTest}}"
+					],
+					"path": [
+						"api",
+						"clientsAplication"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "consulta clientes",
 			"event": [
 				{
@@ -94,6 +173,52 @@
 				"body": {
 					"mode": "raw",
 					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlBackendTest}}/api/clients",
+					"host": [
+						"{{urlBackendTest}}"
+					],
+					"path": [
+						"api",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insertar Cliente Incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validar status 201 (creado)\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// Capturar el ID del nuevo cliente\r",
+							"let jsonData = pm.response.json();\r",
+							"pm.environment.set(\"clienteId\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n       \r\n        \"name\": \"Dona Maria Begonha\",\r\n     \r\n        \"email\": \"dona.maria@example.com\",\r\n        \"phone\": \"+54 9 11 1234-5678\",\r\n        \"address\": \"Av. Corrientes 1234, Necaxa, Mexico\",\r\n        \"balance\": \"15230.75\",\r\n        \"is_active\": true,\r\n        \"created_at\": \"2025-06-05T14:52:59.000000Z\",\r\n        \"updated_at\": \"2025-06-24T12:46:18.000000Z\",\r\n        \"deleted_at\": null\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -176,6 +301,59 @@
 			"response": []
 		},
 		{
+			"name": "Actualizar Cliente Sin Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Validar status 200 (creado)\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// no se agrega header ClienteId\r\n \r\n {\r\n       \r\n        \"name\": \"Maestro Gonides\",\r\n        \"cuit\": \"25-22345678-1\",\r\n        \"email\": \"Profe.Jirafales@example.com\",\r\n        \"phone\": \"+54 9 11 1234-5678\",\r\n        \"address\": \"De la Sierra alta S/N, Tangananicauato, Mexico\",\r\n        \"balance\": \"15230.75\",\r\n        \"is_active\": true,\r\n        \"created_at\": \"2025-06-05T14:52:59.000000Z\",\r\n        \"updated_at\": \"2025-06-24T12:46:18.000000Z\",\r\n        \"deleted_at\": null\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlBackendTest}}/api/clients/",
+					"host": [
+						"{{urlBackendTest}}"
+					],
+					"path": [
+						"api",
+						"clients",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "actualizar cliente",
 			"event": [
 				{
@@ -229,6 +407,57 @@
 						"api",
 						"clients",
 						"{{clienteId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar registro Sin Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El codigo de estad es 204\", function(){\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// no se agrega Header y Url no contiene Id para eliminar",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlBackendTest}}/api/clients",
+					"host": [
+						"{{urlBackendTest}}"
+					],
+					"path": [
+						"api",
+						"clients"
 					]
 				}
 			},

@@ -1,0 +1,7 @@
+{
+
+ 
+    "email":"testeradl@test.com",
+    "password":"Tester@2025"
+
+}

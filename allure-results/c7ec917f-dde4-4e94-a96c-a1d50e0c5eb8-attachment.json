@@ -1,0 +1,11 @@
+{
+    "id": "508",
+    "Authorization": "Bearer 2032|pVYTQjRCEDUU6zmEKlTR1GiSglU6BaNoWSsUCnXp8226be2c",
+    "User-Agent": "PostmanRuntime/7.39.1",
+    "Accept": "*/*",
+    "Cache-Control": "no-cache",
+    "Postman-Token": "a305560c-7e86-4d0e-aa4a-20dae8adf0cb",
+    "Host": "api-tester-adl.leonardojose.dev",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive"
+}

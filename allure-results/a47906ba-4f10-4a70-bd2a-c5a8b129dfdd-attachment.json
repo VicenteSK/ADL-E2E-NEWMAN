@@ -1,0 +1,12 @@
+{
+    "Content-Type": "application/json",
+    "Authorization": "Bearer 2032|pVYTQjRCEDUU6zmEKlTR1GiSglU6BaNoWSsUCnXp8226be2c",
+    "User-Agent": "PostmanRuntime/7.39.1",
+    "Accept": "*/*",
+    "Cache-Control": "no-cache",
+    "Postman-Token": "6bdcbc3a-9964-48f7-ad33-a4cfca6b287f",
+    "Host": "api-tester-adl.leonardojose.dev",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Content-Length": "447"
+}
