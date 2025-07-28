@@ -1,0 +1,10 @@
+{
+    "Server": "nginx/1.22.0 (Ubuntu)",
+    "Date": "Mon, 28 Jul 2025 00:28:36 GMT",
+    "Content-Type": "text/html; charset=UTF-8",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "X-Powered-By": "PHP/8.2.29",
+    "Cache-Control": "no-cache, private",
+    "Access-Control-Allow-Origin": "*"
+}

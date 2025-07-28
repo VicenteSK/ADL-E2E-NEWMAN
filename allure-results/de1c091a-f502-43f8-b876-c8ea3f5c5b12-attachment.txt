@@ -1,1 +1,0 @@
-{"message":"Los datos proporcionados no son v\u00e1lidos.","errors":{"email":["The email field is required."],"password":["The password field is required."]}}

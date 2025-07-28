@@ -1,0 +1,1 @@
+{"id":769,"name":"Profesor Jirafales","cuit":"40-22345678-1","email":"Profe.Jirafales@example.com","phone":"+54 9 11 1234-5678","address":"Av. Corrientes 1234, Guanajuato, Mexico","balance":"15230.75","is_active":true,"created_at":"2025-07-28T00:28:37.000000Z","updated_at":"2025-07-28T00:28:38.000000Z","deleted_at":null}

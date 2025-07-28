@@ -1,0 +1,21 @@
+
+# Instalar Newman
+npm install -g newman
+
+#Correr test collecion y ambiente exportado desde Postman a Newman
+newman run adl-e2e-collection.json -e adl-env.json
+
+#Instalar reporter Newman
+npm install -g newman-reporter-html
+
+#Generar rerporte HTML Newman
+newman run adl-e2e-collection.json -e adl-env.json -r html
+
+#Generar Reporte DASHBOARD HTML 
+newman run adl-e2e-collection.json -e adl-env.json -r htmlextra
+
+#Generar reporte ALLURE
+npx newman run adl-e2e-collection.json -e adl-env.json -r allure --reporter-allure-export results
+
+#Visualizar reporte ALLURE
+allure serve allure-results
